@@ -15,10 +15,11 @@ public class move : MonoBehaviour
     public float r;
     public LayerMask whatIsGround;
     private bool grounded;
+    private Animator anim;
 
     void Start()
     {
-        
+         anim= GetComponent<Animator>();
     }
 
     
@@ -58,7 +59,9 @@ public class move : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity= new Vector2(GetComponent<Rigidbody2D>().velocity.x, jump);
 
         }
-
+        anim.SetFloat("Speed",Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
+        anim.SetFloat("height", GetComponent<Rigidbody2D>().velocity.y);
+        anim.SetBool("grounded", grounded);
     }
-    
+        
 }
